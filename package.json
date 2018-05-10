@@ -1,0 +1,23 @@
+{
+  "name": "CafeApp",
+  "version": "1.0.0",
+  "description": "CLI for the CafeApp",
+  "main": "CafeApp.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TonyByrd/CafeApp.git"
+  },
+  "scripts": {
+    "start": "node .",
+    "validate": "npm ls"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "prompt-list": "^3.1.2"
+  },
+  "devDependencies": {},
+  "pre-commit": []
+}
