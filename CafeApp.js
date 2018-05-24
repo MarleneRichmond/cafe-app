@@ -3,26 +3,26 @@
  */
 
 var List = require('prompt-list');
+var rp = require('request-promise');
 
 
 // Greeting print out
-console.log("Hi welcome to the CafeApp")
+console.log("Hi welcome to the CafeApp");
 
 
 // prompt the user for input
-
+// make call out to openWhisk
+var options = ['Coke',
+    'Diet Coke',
+    'Cherry Coke',
+    {name: 'Sprite', disabled: 'Temporarily unavailable'},
+    'Water'];
 
 var list = new List({
     name: 'order',
     message: 'What would you like to order?',
     // choices may be defined as an array or a function that returns an array
-    choices: [
-        'Coke',
-        'Diet Coke',
-        'Cherry Coke',
-        {name: 'Sprite', disabled: 'Temporarily unavailable'},
-        'Water'
-    ]
+    choices: options
 });
 
 // async
@@ -41,5 +41,8 @@ list.run()
 
 
 // check there input and handle error (within the range)
+
+
+
 
 
