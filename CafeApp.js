@@ -23,7 +23,6 @@ async function GetDrinkOptions() {
       console.log("Drinks = ", Drinks)
       console.log("Drinks.options = ", Drinks[2])
       options = Drinks
-
   console.log("options.options = ", options.options)
 })
 }*/
@@ -68,7 +67,7 @@ var coldDrinks = new List({
   name: 'coldDrinks',
   message: 'Choose your Booster',
     // choices may be defined as an array or a function that returns an array
-  choices: ["Iced Coffe","Iced Caramel Machiato", "Iced Dark Mocha", "Iced White Mocha","Iced Americano", "Iced Latte",
+  choices: ["Iced Coffee","Iced Caramel Machiato", "Iced Dark Mocha", "Iced White Mocha","Iced Americano", "Iced Latte",
             "Iced Vanilla Latte", "Frappuccino", "Smoothies","Iced Tazo Tea", ]
 });
 
@@ -109,6 +108,20 @@ var coldDrinkSize = new List({
   }]
 });
 
+var syrupMenu = new List({
+  name: 'syrupMenu',
+  message: 'Would you like to add syrup?',
+    // choices may be defined as an array or a function that returns an array
+  choices: [ "No syrup", "Vanilla","Sugarfree Vanilla","Caramel","Hazel Nut","Toffee Nut","Cinnamon Dolce",
+      "Sugarfree Cinnamon Dolce","Classic","Peppermint"]
+});
+
+var shotPrompt = new List({
+  name: 'shotPrompt',
+  message: 'Would you like an extra shot of expresso?',
+    // choices may be defined as an array or a function that returns an array
+  choices: [ "No thanks", "1", "2", "Dave style"]
+});
 
 //======================= Menu RunTimes ================================
 
@@ -169,10 +182,24 @@ function handleDrinks (drinkName, drinkType) {
         checkout()
     })
   }
-  //TODO handle syrup here on iced/hot plain coffee
+
+  orderTicket.syrup = false
+  if (drinkName === "Coffee" || drinkName === "Iced Coffee") {
+     syrupMenu.run()
+       .then(function(answer) {
+         orderTicket.syrup = true
+       })
+  }
+
+  orderTicket.extraShot = false
+  if (drinkName !== "Hot Chocolate" && drinkName !== "Tazo Tea" && drinkName !== "Iced Tazo Tea") {
+     shotPrompt.run()
+       .then(function(answer) {
+         orderTicket.shot = answer
+       })
+  }
 
 }
-
 
 
 
@@ -182,7 +209,9 @@ function checkout () {
 
   paymentSystem()
   console.log("subTotal = ", subTotal)
-  var total = subTotal + subTotal*.0475
+  var tax = subTotal*.0475
+  console.log("tax = ", tax.toFixed(2))
+  var total = subTotal + tax
   console.log("Your total is: ", total.toFixed(2))  //using toFixed(2) to limit the total to 2 decimal places
 
   //TODO prompt user if they would like to make another order
@@ -196,6 +225,12 @@ function checkout () {
 function paymentSystem () {
 
    //TODO Set subtotal to actual prices
+
+   if (orderTicket.syrup) {
+     subTotal += 0.60
+   }
+
+
 
     switch(orderTicket.itemName) {
         case "Coffee":
@@ -297,24 +332,78 @@ function paymentSystem () {
              subTotal += 2.50
             }
             break;
+        case "Iced Coffee":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced Caramel Machiato":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced Dark Mocha":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced White Mocha":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced Americano":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced Latte":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced Vanilla Latte":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Frappuccino":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Smoothies":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
+        case "Iced Tazo Tea":
+            if (orderTicket.itemSize === "Grande") {
+             subTotal += 2.15
+            } else {
+             subTotal += 2.50
+            }
+            break;
         default:
             console.log("Invalid drink type")
     }
-    //TODO Expand out payment system to include cold drinks
-    /*
-    Iced Coffe","Iced Caramel Machiato", "Iced Dark Mocha", "Iced White Mocha","Iced Americano", "Iced Latte",
-            "Iced Vanilla Latte", "Frappuccino", "Smoothies","Iced Tazo Tea"
-    */
-
 }
-
-
-// async
-/*
-list.ask(function(answer) {
-    console.log(answer);
-});
-*/
-
-
 
