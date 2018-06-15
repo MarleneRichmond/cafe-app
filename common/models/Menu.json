@@ -1,0 +1,43 @@
+{
+  "name": "Menu",
+  "base": "Model",
+  "properties": {},
+  "methods": {
+    "topMenu": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "Menus",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "starbucksMenu": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "starbucksMenu",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "coffeeDrinks": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "coffeeDrinks",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    }
+
+
+  }
+
+}
