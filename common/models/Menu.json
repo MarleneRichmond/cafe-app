@@ -35,6 +35,83 @@
       "http": {
         "verb": "get"
       }
+    },
+    "coldDrinks": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "coldDrinks",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "starbucksFood": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "starbucksFood",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "cafeMenu": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "cafeMenu",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "drinkSize": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "drinkSize",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "coldDrinkSize": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "coldDrinkSize",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "syrupMenu": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "syrupMenu",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
+    },
+    "shotPrompt": {
+      "isStatic": true,
+      "accepts": [],
+      "returns": {
+        "arg": "shotPrompt",
+        "type": "array"
+      },
+      "http": {
+        "verb": "get"
+      }
     }
 
 
