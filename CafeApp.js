@@ -14,18 +14,15 @@ console.log("Hi welcome to the CafeApp");
 // prompt the user for input
 // make call out to openWhisk
 
-//GetDrinkOptions();
-/*
-async function GetDrinkOptions() {
-  var url = "https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/8b7e1ac866b2c44743c235346ff74e566d8d51387bb261ec40bbbd7edf984843/menu/topLevel"
-  var drinks = rp(url)
-    .then(function(Drinks) {
-      console.log("Drinks = ", Drinks)
-      console.log("Drinks.options = ", Drinks[2])
-      options = Drinks
-  console.log("options.options = ", options.options)
+
+function GetTopMenu() {
+  console.log("Before api call")
+  var url = "http://localhost:3000/api/Menus/topMenu"
+  rp(url)
+    .then(function(Menu) {
+      return Menu.Menus
 })
-}*/
+}
 
 var orderTicket = {};
 var fullTicket = []; //array of orderTickets
@@ -124,23 +121,20 @@ var shotPrompt = new List({
 });
 
 //======================= Menu RunTimes ================================
+topFunction();
 
-
-// Main program flow
-topMenu.run()
+function topFunction(){
+  topMenu.run()
     .then(function(answer) {
         //console.log(answer);
         if(answer === "Starbucks" ){
-          starbucksMenu.run()
-            .then(function(answer) {
-              console.log(answer)
-            })
+          starbucksFunction()
         }
     })
 
-
-//flow for the Starbucks menu
-starbucksMenu.run()
+}
+function starbucksFunction(){
+  starbucksMenu.run()
     .then(function(answer) {
         //console.log(answer);
         if(answer === "Coffee" ){
@@ -162,6 +156,14 @@ starbucksMenu.run()
             })
         }
     })
+
+}
+// Main program flow
+
+
+
+//flow for the Starbucks menu
+
 
 //======================= Helper Functions ================================
 function handleDrinks (drinkName, drinkType) {
